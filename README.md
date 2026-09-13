@@ -4,10 +4,10 @@ A static HTML/CSS/JavaScript marketing and leasing website for Pena Plaza, organ
 
 ## Pages
 
-- `index.html` — primary San Antonio commercial-space landing page
+- `index.html` — primary Weslaco / Rio Grande Valley commercial-space landing page
 - `about.html` — property overview
 - `available-spaces.html` — leasing/availability page without fabricated inventory
-- `location.html` — San Antonio location page
+- `location.html` — Weslaco / Rio Grande Valley location page
 - `leasing.html` — leasing process and FAQ
 - `contact.html` — Netlify leasing inquiry form
 - `privacy-policy.html`
@@ -31,6 +31,14 @@ npm run build
 Netlify publishes the generated `dist/` directory.
 
 The source HTML uses empty `#site-header` and `#site-footer` placeholders. The build injects the shared component markup directly into each deployed HTML response so navigation and footer links are crawlable without relying on JavaScript.
+
+## Branding assets
+
+- `images/pena-plaza-logo-horizontal.webp` — optimized header wordmark
+- `images/pena-plaza-logo-stacked.webp` — optimized stacked logo variant
+- `images/pena-plaza-mark.webp` — optimized standalone building/P mark
+- `images/pena-plaza-favicon.png` — browser favicon
+- matching high-resolution PNG logo files are kept in `images/` for future design use
 
 ## Future tenant portal
 

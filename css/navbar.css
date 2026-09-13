@@ -1,0 +1,78 @@
+#site-header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    border-bottom: 1px solid rgba(23, 61, 52, .14);
+    background: rgba(238, 232, 221, .96);
+    box-shadow: 0 8px 24px rgba(15, 45, 39, .05);
+    backdrop-filter: blur(18px);
+}
+.site-header {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    width: min(1240px, calc(100% - 48px));
+    min-height: 84px;
+    margin-inline: auto;
+}
+.site-brand {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    margin-right: auto;
+    color: var(--forest);
+    text-decoration: none;
+}
+.site-brand-logo {
+    display: block;
+    width: auto;
+    height: 48px;
+    object-fit: contain;
+}
+.navigation-panel { display: flex; align-items: center; gap: 30px; }
+.main-navigation { display: flex; align-items: center; gap: 25px; }
+.main-navigation a {
+    position: relative;
+    padding-block: 31px;
+    color: var(--forest);
+    font-size: .88rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 180ms ease;
+}
+.main-navigation a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 21px;
+    height: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    background: var(--clay);
+    transition: transform 180ms ease;
+}
+.main-navigation a:hover::after, .main-navigation a.active::after { transform: scaleX(1); }
+.main-navigation a:hover, .main-navigation a.active { color: var(--clay-dark); }
+.leasing-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 11px 18px;
+    border: 1px solid rgba(143, 79, 55, .18);
+    border-radius: 999px;
+    color: var(--white);
+    background: var(--clay);
+    box-shadow: 0 8px 18px rgba(143, 79, 55, .14);
+    font-size: .86rem;
+    font-weight: 800;
+    text-decoration: none;
+    transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+.leasing-button:hover {
+    transform: translateY(-2px);
+    background: var(--clay-dark);
+    box-shadow: 0 10px 22px rgba(143, 79, 55, .2);
+}
+.navigation-toggle { display: none; }

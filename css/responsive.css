@@ -1,0 +1,80 @@
+@media (max-width: 1040px) {
+    .navigation-toggle {
+        display: grid;
+        place-content: center;
+        gap: 5px;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border: 1px solid rgba(23, 61, 52, .18);
+        border-radius: 12px;
+        background: var(--sand-light);
+        cursor: pointer;
+    }
+    .navigation-toggle-bar { display: block; width: 19px; height: 2px; background: var(--forest); }
+    .navigation-panel {
+        position: absolute;
+        top: 84px;
+        left: 0;
+        right: 0;
+        display: none;
+        align-items: stretch;
+        padding: 18px 24px 24px;
+        border-top: 1px solid rgba(23, 61, 52, .12);
+        background: rgba(238, 232, 221, .99);
+        box-shadow: 0 18px 32px rgba(15,45,39,.12);
+    }
+    .navigation-panel.is-open { display: grid; }
+    .main-navigation { display: grid; gap: 0; }
+    .main-navigation a { padding: 13px 0; border-bottom: 1px solid rgba(23, 61, 52, .12); }
+    .main-navigation a::after { display: none; }
+    .leasing-button { margin-top: 8px; }
+
+    .hero, .hero-layout { min-height: auto; }
+    .hero::before {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: clamp(360px, 54vw, 560px);
+        background-position: center 50%;
+    }
+    .hero::after { display: none; }
+    .hero-layout { display: block; }
+    .hero-content { width: 100%; max-width: 760px; padding: 72px 0 76px; }
+    .hero h1 { max-width: 720px; }
+
+    .fact-grid { grid-template-columns: 1fr; }
+    .fact-card { min-height: 0; }
+    .fact-label { margin-bottom: 18px; }
+    .card-grid, .space-grid { grid-template-columns: 1fr; }
+    .feature-card { min-height: 240px; }
+    .split-layout, .location-grid, .form-layout { grid-template-columns: 1fr; gap: 52px; }
+    .split-heading, .form-intro { position: static; }
+    .faq-item { grid-template-columns: 1fr; gap: 10px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .footer-brand-column { grid-column: 1 / -1; }
+}
+
+@media (max-width: 680px) {
+    .container, .site-header { width: min(100% - 30px, 1180px); }
+    .site-brand-logo { height: 42px; }
+    .hero::before { height: 320px; }
+    .hero-content { padding: 58px 0 64px; }
+    .hero h1 { font-size: clamp(3rem, 15vw, 4.65rem); }
+    .hero-actions { display: grid; }
+    .button { width: 100%; }
+    .fact-section, .cards-section, .location-section, .faq-section, .content-section, .split-section { padding: 78px 0; }
+    .page-hero { padding: 82px 0 72px; }
+    .page-hero::after { right: -110px; width: 210px; height: 210px; }
+    .form-grid { grid-template-columns: 1fr; }
+    .form-field--full { grid-column: auto; }
+    .contact-form { padding: 24px; border-radius: 22px; }
+    .step { padding: 26px 24px 26px 72px; }
+    .step::before { left: 22px; top: 27px; }
+    .location-image-wrap::before { left: -14px; bottom: -14px; }
+    .location-image { border-radius: 6px 34px 6px 6px; }
+    .cta-section { padding: 84px 0; }
+    .footer-grid { grid-template-columns: 1fr; gap: 38px; }
+    .footer-brand-column { grid-column: auto; }
+    .footer-bottom-inner { align-items: flex-start; flex-direction: column; justify-content: center; padding: 18px 0; }
+}
