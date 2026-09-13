@@ -62,5 +62,24 @@
     gap: 24px;
 }
 .footer-bottom p { margin: 0; color: #aebfb8; font-size: .83rem; }
-.footer-credit { color: #d7b29d; font-size: .83rem; text-decoration: none; }
+.footer-credit {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: #d7b29d;
+    font-size: .83rem;
+    text-decoration: none;
+}
+.footer-credit-logo {
+    display: block;
+    width: auto;
+    height: 22px;
+    max-width: 150px;
+    object-fit: contain;
+    transition: opacity 160ms ease, transform 160ms ease;
+}
 .footer-credit:hover { color: var(--sand-light); }
+.footer-credit:hover .footer-credit-logo {
+    opacity: .9;
+    transform: translateY(-1px);
+}
