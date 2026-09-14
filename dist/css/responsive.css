@@ -73,6 +73,7 @@
     .step::before { left: 22px; top: 27px; }
     .location-image-wrap::before { left: -14px; bottom: -14px; }
     .location-image { border-radius: 6px 34px 6px 6px; }
+    .property-map { min-height: 340px; }
     .cta-section { padding: 84px 0; }
     .footer-grid { grid-template-columns: 1fr; gap: 38px; }
     .footer-brand-column { grid-column: auto; }
