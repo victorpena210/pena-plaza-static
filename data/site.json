@@ -11,12 +11,12 @@
     {
       "id": "building-1",
       "name": "Peña Plaza · Building 1",
-      "image": "images/pena-plaza-hero.webp",
-      "imageWidth": 1600,
-      "imageHeight": 900,
-      "imageAlt": "Illustrative exterior view of Peña Plaza Building 1",
-      "caption": "Illustrative property image. Confirm current appearance and tenant details before visiting.",
-      "captionEs": "Imagen ilustrativa de la propiedad. Confirme su apariencia actual y los negocios antes de visitarla.",
+      "image": "images/pena-plaza-building-1.svg",
+      "imageWidth": 1200,
+      "imageHeight": 675,
+      "imageAlt": "Illustrative exterior of Peña Plaza Building 1 with Peña Plaza branding and no tenant businesses shown",
+      "caption": "Illustrative property image with Peña Plaza branding only. Confirm current appearance and tenant details before visiting.",
+      "captionEs": "Imagen ilustrativa de la propiedad con solo la marca de Peña Plaza. Confirme su apariencia actual y los negocios antes de visitarla.",
       "address": null,
       "suites": []
     },
