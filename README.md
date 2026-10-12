@@ -61,7 +61,7 @@ Only insert approved values. When you publish suite listings, also update the in
 
 ## Images
 
-- Building 1 uses `images/pena-plaza-building-1.svg`, a matching illustrative façade with a blue sky and Peña Plaza branding only. It contains no tenant-business signs.
+- Building 1 uses `images/pena-plaza-building-1.svg`, an edit of the original six-storefront building. Its low roofline, metal awning, stone piers, storefront layout, landscaping, and monument sign are preserved; the edit adds a daytime blue sky, updates Peña Plaza branding, and removes invented tenant signage. Building 2 is a separate property with a different design.
 - Building 2 uses `images/pena-plaza-building-2.webp`, the enhanced photo edit with proposed signage and landscaping.
 - Property-image captions and alt text are defined beside each building in `data/site.json`. Keep them accurate when current property photography becomes available.
 
