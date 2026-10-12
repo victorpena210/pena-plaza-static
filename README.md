@@ -61,10 +61,9 @@ Only insert approved values. When you publish suite listings, also update the in
 
 ## Images
 
-- Building 1 retains the original `images/pena-plaza-hero.webp`, described by the original project as a rendering and now visibly labeled illustrative.
-- Building 2 uses `images/pena-plaza-building-2.webp`, the approved photo edit with a logo, cleaned pavement, and roadside hedge. It is visibly captioned as an enhanced image with proposed signage and landscaping.
-- The illustrative interior image is no longer used on the public pages.
-- Photo captions are defined beside their building in `data/site.json`. Update them when current property photography becomes available.
+- Building 1 uses `images/pena-plaza-building-1.svg`, a matching illustrative façade with a blue sky and Peña Plaza branding only. It contains no tenant-business signs.
+- Building 2 uses `images/pena-plaza-building-2.webp`, the enhanced photo edit with proposed signage and landscaping.
+- Property-image captions and alt text are defined beside each building in `data/site.json`. Keep them accurate when current property photography becomes available.
 
 ## Form delivery after deployment
 
