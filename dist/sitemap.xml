@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Replace example.com with the production domain before submitting this sitemap to Google Search Console. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url><loc>https://example.com/</loc></url>
-    <url><loc>https://example.com/about.html</loc></url>
-    <url><loc>https://example.com/available-spaces.html</loc></url>
-    <url><loc>https://example.com/location.html</loc></url>
-    <url><loc>https://example.com/leasing.html</loc></url>
-    <url><loc>https://example.com/contact.html</loc></url>
-    <url><loc>https://example.com/privacy-policy.html</loc></url>
-    <url><loc>https://example.com/website-disclaimer.html</loc></url>
+    <url><loc>https://penaplaza.com/about.html</loc></url>
+    <url><loc>https://penaplaza.com/available-spaces.html</loc></url>
+    <url><loc>https://penaplaza.com/building-1.html</loc></url>
+    <url><loc>https://penaplaza.com/building-2.html</loc></url>
+    <url><loc>https://penaplaza.com/contact.html</loc></url>
+    <url><loc>https://penaplaza.com/espanol.html</loc></url>
+    <url><loc>https://penaplaza.com/</loc></url>
+    <url><loc>https://penaplaza.com/leasing.html</loc></url>
+    <url><loc>https://penaplaza.com/location.html</loc></url>
+    <url><loc>https://penaplaza.com/privacy-policy.html</loc></url>
+    <url><loc>https://penaplaza.com/website-disclaimer.html</loc></url>
 </urlset>

@@ -1,0 +1,36 @@
+{
+  "name": "Peña Plaza",
+  "url": "https://penaplaza.com",
+  "region": "Rio Grande Valley, Texas",
+  "contact": {
+    "phone": null,
+    "email": null,
+    "responseTime": null
+  },
+  "buildings": [
+    {
+      "id": "building-1",
+      "name": "Peña Plaza · Building 1",
+      "image": "images/pena-plaza-hero.webp",
+      "imageWidth": 1600,
+      "imageHeight": 900,
+      "imageAlt": "Illustrative exterior view of Peña Plaza Building 1",
+      "caption": "Illustrative property image. Confirm current appearance and tenant details before visiting.",
+      "captionEs": "Imagen ilustrativa de la propiedad. Confirme su apariencia actual y los negocios antes de visitarla.",
+      "address": null,
+      "suites": []
+    },
+    {
+      "id": "building-2",
+      "name": "Peña Plaza · Building 2",
+      "image": "images/pena-plaza-building-2.webp",
+      "imageWidth": 1774,
+      "imageHeight": 887,
+      "imageAlt": "Enhanced image of Peña Plaza Building 2 with proposed signage and a roadside hedge",
+      "caption": "Enhanced photo with proposed signage and landscaping. Current conditions may differ.",
+      "captionEs": "Foto editada con letrero y jardinería propuestos. Las condiciones actuales pueden variar.",
+      "address": null,
+      "suites": []
+    }
+  ]
+}

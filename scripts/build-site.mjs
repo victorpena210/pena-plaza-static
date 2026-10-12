@@ -1,5 +1,6 @@
 import { cp, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { renderContent, navigation, footer as renderFooter, site } from "./site-content.mjs";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -38,13 +39,16 @@ async function copyPublicSite() {
 }
 
 async function injectSharedComponents() {
-    const navbar = (await readFile(path.join(COMPONENTS_DIR, "navbar.html"), "utf8")).trim();
-    const footer = (await readFile(path.join(COMPONENTS_DIR, "footer.html"), "utf8")).trim();
+
     const htmlFiles = await collectHtmlFiles(DIST);
     let builtPageCount = 0;
 
     for (const filePath of htmlFiles) {
         let html = await readFile(filePath, "utf8");
+        html = renderContent(html, path.basename(filePath));
+        const es = /<html lang="es">/.test(html);
+        const navbar = navigation(es);
+        const footer = renderFooter(es);
         const hasHeader = HEADER_PLACEHOLDER.test(html);
         const hasFooter = FOOTER_PLACEHOLDER.test(html);
         if (!hasHeader && !hasFooter) continue;
@@ -67,8 +71,8 @@ async function validateBuiltSite() {
         const relative = path.relative(DIST, filePath);
         if (HEADER_PLACEHOLDER.test(html)) problems.push(`${relative}: empty site-header remains`);
         if (FOOTER_PLACEHOLDER.test(html)) problems.push(`${relative}: empty site-footer remains`);
-        if (!html.includes('aria-label="Main navigation"')) problems.push(`${relative}: navbar was not injected`);
-        if (!html.includes("Peña Plaza. All rights reserved.")) problems.push(`${relative}: footer was not injected`);
+        if (!/aria-label="(Main navigation|Navegación principal)"/.test(html)) problems.push(`${relative}: navbar was not injected`);
+        if (!html.includes("Peña Plaza. All rights reserved.") && !html.includes("Peña Plaza. Todos los derechos reservados.")) problems.push(`${relative}: footer was not injected`);
     }
     if (problems.length) throw new Error(`Build validation failed:\n- ${problems.join("\n- ")}`);
 }
@@ -79,6 +83,19 @@ async function build() {
     await copyPublicSite();
     const count = await injectSharedComponents();
     await validateBuiltSite();
+    const pages = (await collectHtmlFiles(DIST)).sort();
+    const entries = [];
+    for (const file of pages) {
+        const html = await readFile(file, 'utf8');
+        if (/name="robots" content="noindex/.test(html)) continue;
+        entries.push(`    <url><loc>${site.url}/${path.basename(file) === 'index.html' ? '' : path.basename(file)}</loc></url>`);
+    }
+    const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries.join('\n')}\n</urlset>\n`;
+    await writeFile(path.join(DIST, 'sitemap.xml'), sitemap);
+    await writeFile(path.join(ROOT, 'sitemap.xml'), sitemap);
+    // Keep the source-preview fallback components aligned with the deployed layout.
+    await writeFile(path.join(COMPONENTS_DIR, 'navbar.html'), navigation());
+    await writeFile(path.join(COMPONENTS_DIR, 'footer.html'), renderFooter());
     console.log(`Built ${count} HTML pages into dist/.`);
     console.log("Shared navigation/footer are present in deployed HTML for crawlers and answer engines.");
 }

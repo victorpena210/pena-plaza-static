@@ -1,50 +1,98 @@
-# Pena Plaza Static Website
+# Peña Plaza — two-location commercial leasing site
 
-A static HTML/CSS/JavaScript marketing and leasing website for Pena Plaza, organized using the same production pattern as TexMediator: shared components, semantic HTML, build-time navbar/footer injection, SEO/AEO metadata, and a Netlify-ready build.
+This update distinguishes two separate buildings, uses the approved enhanced Building 2 image, and removes the previous single-address assumption. Both addresses are pending owner confirmation. The former street address and map are intentionally unpublished until their building association is confirmed.
+
+## Build and preview
+
+Requires Node.js 22 or later; the build uses Node's built-in modules and needs no npm dependencies.
+
+```bash
+npm run check
+python3 -m http.server 8080 --directory dist
+```
+
+Open `http://localhost:8080`. Preview and deploy **dist/**: the build adds property details, shared navigation/footer, and structured data to the source pages. Netlify uses the included `netlify.toml` to run the build and publish `dist`.
 
 ## Pages
 
-- `index.html` — primary Weslaco / Rio Grande Valley commercial-space landing page
-- `about.html` — property overview
-- `available-spaces.html` — leasing/availability page without fabricated inventory
-- `location.html` — Weslaco / Rio Grande Valley location page
-- `leasing.html` — leasing process and FAQ
-- `contact.html` — Netlify leasing inquiry form
-- `privacy-policy.html`
-- `website-disclaimer.html`
+- `index.html`: overview of both buildings
+- `location.html`: both locations (existing URL retained)
+- `building-1.html`, `building-2.html`: separate property pages
+- `available-spaces.html`: inquiries and any verified suite details
+- `leasing.html`: process and practical leasing questions
+- `contact.html`: English Netlify form with building and request selections
+- `espanol.html`: Spanish overview and separate Spanish Netlify form
+- `about.html`, `privacy-policy.html`, `website-disclaimer.html`
+- `thank-you.html`, `gracias.html`, `404.html`: excluded from the sitemap and marked noindex
 
-## Before launch
+## Add the confirmed addresses
 
-1. Replace every `https://example.com` canonical/structured-data/sitemap URL with the final production domain.
-2. Update `robots.txt` with the final sitemap URL.
-3. Add the exact street address, phone number, leasing email, verified amenities, suite sizes, rent, and availability once confirmed.
-4. Replace or supplement the current hero rendering with verified property photography as construction progresses.
-5. Connect the production domain, Google Analytics 4, and Google Search Console.
-6. Submit `sitemap.xml` after the production URL is final.
+Edit **data/site.json**. Match each building to its picture before assigning an address. Replace the relevant `address: null` with a complete object using these keys:
 
-## Build
-
-```bash
-npm run build
+```json
+{
+  "streetAddress": "CONFIRMED STREET ADDRESS",
+  "addressLocality": "CONFIRMED CITY",
+  "addressRegion": "TX",
+  "postalCode": "CONFIRMED ZIP"
+}
 ```
 
-Netlify publishes the generated `dist/` directory.
+The uppercase values above are instructions, not publishable property information. Use the real values, then run `npm run build`. The address, directions link, and matching Place structured data will update together. Leave an address null if it is not confirmed. No map points to an assumed location.
 
-The source HTML uses empty `#site-header` and `#site-footer` placeholders. The build injects the shared component markup directly into each deployed HTML response so navigation and footer links are crawlable without relying on JavaScript.
+## Add leasing contact information
 
-## Branding assets
+In the same file, populate `contact.phone`, `contact.email`, and, only if approved, `contact.responseTime`. Null fields stay hidden. Phone and email links appear on the inquiry pages. Do not promise a response time until management has confirmed it.
 
-- `images/pena-plaza-logo-horizontal.webp` — optimized header wordmark
-- `images/pena-plaza-logo-stacked.webp` — optimized stacked logo variant
-- `images/pena-plaza-mark.webp` — optimized standalone building/P mark
-- `images/pena-plaza-favicon.png` — browser favicon
-- matching high-resolution PNG logo files are kept in `images/` for future design use
+## Add verified availability
 
-## Future tenant portal
+Each building has a `suites` array. It is empty because no vacancies, dimensions, rates, or occupancy dates have been supplied. Each confirmed listing can use:
 
-Keep the Java/Spring project separately. When the payment/tenant system is ready, it can be deployed under a subdomain such as `portal.yourdomain.com` without replacing this public SEO site.
+```json
+{
+  "name": "VERIFIED SUITE NAME",
+  "sizeText": "VERIFIED SQUARE FOOTAGE",
+  "rentText": "APPROVED RENT OR CONTACT FOR PRICING",
+  "availabilityText": "CONFIRMED STATUS OR DATE"
+}
+```
 
-## Visual direction
+Only insert approved values. When you publish suite listings, also update the introductory availability text and the English/Spanish FAQs that currently say sizes, prices, and dates are not published. This prevents outdated claims.
 
-Pena Plaza intentionally has its own visual system rather than reusing TexMediator's presentation. The current design uses a light architectural/editorial layout, limestone neutrals, deep green, and a clay accent, with split imagery and rounded commercial-property cards. TexMediator is only the reference for code organization and static-site architecture.
-# pena-plaza-static
+## Images
+
+- Building 1 retains the original `images/pena-plaza-hero.webp`, described by the original project as a rendering and now visibly labeled illustrative.
+- Building 2 uses `images/pena-plaza-building-2.webp`, the approved photo edit with a logo, cleaned pavement, and roadside hedge. It is visibly captioned as an enhanced image with proposed signage and landscaping.
+- The illustrative interior image is no longer used on the public pages.
+- Photo captions are defined beside their building in `data/site.json`. Update them when current property photography becomes available.
+
+## Form delivery after deployment
+
+The forms use native HTML POST submission and browser validation; JavaScript only preselects supported building/request values. Netlify honeypots are hidden from keyboard and assistive technology navigation. English and Spanish form names are `leasing-inquiry` and `leasing-inquiry-es`.
+
+After deploying, verify form detection is enabled in the Netlify site settings, confirm both forms appear, and configure the desired email notifications. Submit one English inquiry and one Spanish inquiry on the live site. Verify the form records, notification receipt, building selection, and thank-you redirect. Local checks can verify markup and submitted fields, but cannot prove live Netlify processing or email delivery.
+
+Do not add an analytics identifier until the real account ID is supplied. No analytics or advertising scripts are included.
+
+## SEO and accessibility
+
+All canonical URLs, social URLs, and schema identities use `https://penaplaza.com`. The build generates `sitemap.xml`; `robots.txt` references it. Each building has its own Place identity without an invented address. The Spanish landing page and English homepage have reciprocal language alternate links.
+
+Deployed HTML includes all navigation and property content without JavaScript. There are visible keyboard focus styles, skip links, correctly labeled fields, reduced-motion support, and an Escape-to-close mobile menu that restores focus only when open.
+
+## What remains for the owner
+
+1. Confirm the address associated with each building.
+2. Supply any approved leasing phone, email, and response expectation.
+3. Supply real suite availability, sizes, rates, terms, and amenities.
+4. Verify live form delivery and notifications after deployment.
+5. Add current photography when available; do not describe proposed signs or landscaping as installed.
+
+No public deployment was performed as part of the ZIP update.
+
+## Validation performed for this update
+
+- Production build and static checks passed for all 14 pages: internal links and anchors, canonical URLs, valid structured data, Netlify form markup, and sitemap inclusion.
+- Browser checks passed for all pages at desktop (1440px) and mobile (390px) widths, with extra 320px checks on the homepage and both inquiry pages. No horizontal overflow, missing images, or JavaScript errors were found.
+- Verified building/tour preselection, invalid query-value handling, required form fields, keyboard skip navigation, mobile-menu Escape/focus behavior, and navigation/property content with JavaScript disabled.
+- English and Spanish form POST payloads were intercepted locally and checked. No live inquiry was sent; Netlify processing and notification delivery remain to be verified after deployment.
