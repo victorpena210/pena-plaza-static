@@ -38,6 +38,10 @@ figure { margin: 0; }
 .property-space-size strong { color: var(--forest); font-size: 1.55rem; line-height: 1.3; }
 .property-space-size span { color: var(--muted); font-size: 1rem; }
 .detail-panel .property-space-summary { padding-top: 0; margin-bottom: 28px; }
+.interior-gallery { margin-top: 64px; }
+.interior-gallery .section-heading { margin-bottom: 28px; }
+.interior-gallery-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.interior-gallery .property-figure { overflow: hidden; border: 1px solid var(--border); border-radius: 18px; background: var(--sand-light); }
 .inventory-note { margin-top: 22px; color: var(--muted); font-size: .94rem; }
 .suite-summary { border-top: 1px solid var(--border); padding-top: 20px; margin-top: 20px; }
 .suite-summary dl div { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 8px 0; }
@@ -62,7 +66,7 @@ input, select, textarea { min-width: 0; }
     .form-layout { gap: 40px; }
 }
 @media (max-width: 740px) {
-    .property-grid, .property-detail-grid { grid-template-columns: 1fr; }
+    .property-grid, .property-detail-grid, .interior-gallery-grid { grid-template-columns: 1fr; }
     .property-grid { gap: 28px; }
     .property-card-copy { padding: 24px; }
     .property-card h2 { font-size: 1.8rem; }

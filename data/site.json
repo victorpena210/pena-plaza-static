@@ -34,7 +34,27 @@
       "interiorSpace": {
         "lengthFeet": 50,
         "widthFeet": 20
-      }
+      },
+      "interiorGallery": [
+        {
+          "src": "images/pena-plaza-building-2-interior-concept-1.webp",
+          "width": 1672,
+          "height": 941,
+          "alt": "Long view concept rendering of Building 2 with proposed white walls, exposed silver ductwork, dark ceiling beams, and a concrete floor",
+          "altEs": "Vista longitudinal: concepto del Edificio 2 con paredes blancas, ductos expuestos, vigas oscuras y piso de concreto propuestos",
+          "caption": "Long view · Concept rendering — proposed finishes.",
+          "captionEs": "Vista longitudinal · Imagen conceptual — acabados propuestos."
+        },
+        {
+          "src": "images/pena-plaza-building-2-interior-concept-2.webp",
+          "width": 1672,
+          "height": 941,
+          "alt": "Reverse view concept rendering of Building 2 with proposed white walls, exposed silver ductwork, dark ceiling beams, and a concrete floor",
+          "altEs": "Vista desde el otro extremo: concepto del Edificio 2 con paredes blancas, ductos expuestos, vigas oscuras y piso de concreto propuestos",
+          "caption": "Reverse view · Concept rendering — proposed finishes.",
+          "captionEs": "Vista desde el otro extremo · Imagen conceptual — acabados propuestos."
+        }
+      ]
     }
   ],
   "pageLastModified": {

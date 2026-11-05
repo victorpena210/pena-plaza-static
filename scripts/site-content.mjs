@@ -25,6 +25,10 @@ function interiorSize(building, es) {
     const area = (lengthFeet * widthFeet).toLocaleString('en-US');
     return `<div class="property-space-summary"><p class="eyebrow">${es ? 'Espacio interior destacado' : 'Featured interior space'}</p><p class="property-space-size"><strong>${lengthFeet} ${es ? 'pies' : 'ft'} × ${widthFeet} ${es ? 'pies' : 'ft'}</strong><span>${area} ${es ? 'pies cuadrados' : 'sq ft'}</span></p></div>`;
 }
+function interiorGallery(building, es) {
+    if (!building.interiorGallery?.length) return '';
+    return `<section class="interior-gallery" aria-labelledby="${building.id}-interior"><div class="section-heading"><p class="eyebrow">${es ? 'Explore el interior' : 'Explore the interior'}</p><h2 id="${building.id}-interior">${es ? 'Imagine las posibilidades.' : 'Picture the possibilities.'}</h2><p>${es ? 'Conceptos basados en fotos del espacio durante la construcción. Las imágenes muestran acabados propuestos; confirme los acabados incluidos al consultar.' : 'Concept renderings based on construction photos of the space. These images show proposed finishes; ask which finishes are included when you inquire.'}</p></div><div class="interior-gallery-grid">${building.interiorGallery.map(image => `<figure class="property-figure"><img src="${esc(image.src)}" alt="${esc(es ? image.altEs : image.alt)}" width="${image.width}" height="${image.height}" loading="lazy" decoding="async"><figcaption>${esc(es ? image.captionEs : image.caption)}</figcaption></figure>`).join('')}</div></section>`;
+}
 function cards(es, availability = false, eager = false) {
     return `<div class="property-grid">${site.buildings.map(b => `<article class="property-card">
 ${figure(b, es, eager)}<div class="property-card-copy"><p class="eyebrow">${es ? 'Ubicación' : 'Location'} ${b.id.slice(-1)}</p><h2>${esc(label(b, es))}</h2>
@@ -41,7 +45,7 @@ function suites(building, es = false) {
 function detail(id, es) {
     const b = site.buildings.find(b => b.id === id);
     if (!b) throw new Error(`Unknown building: ${id}`);
-    return `${figure(b, es, true)}<div class="property-detail-grid"><div><p class="eyebrow">${es ? 'Ubicación' : 'Location'}</p><h2>${esc(label(b, es))}</h2>${address(b, es)}<p>${es ? 'Este edificio está en una ubicación diferente a la otra propiedad de Peña Plaza.' : 'This building is at a different location from the other Peña Plaza property.'}</p></div><div class="detail-panel">${interiorSize(b, es)}<h2 class="small-heading">${es ? 'Disponibilidad y visitas' : 'Availability & tours'}</h2>${suites(b, es)}<div class="property-actions"><a class="button button-primary" href="contact.html?building=${b.id}">Request Leasing Details</a><a class="button button-secondary" href="contact.html?building=${b.id}&amp;request=tour">Request a Tour</a></div></div></div>`;
+    return `${figure(b, es, true)}<div class="property-detail-grid"><div><p class="eyebrow">${es ? 'Ubicación' : 'Location'}</p><h2>${esc(label(b, es))}</h2>${address(b, es)}<p>${es ? 'Este edificio está en una ubicación diferente a la otra propiedad de Peña Plaza.' : 'This building is at a different location from the other Peña Plaza property.'}</p></div><div class="detail-panel">${interiorSize(b, es)}<h2 class="small-heading">${es ? 'Disponibilidad y visitas' : 'Availability & tours'}</h2>${suites(b, es)}<div class="property-actions"><a class="button button-primary" href="contact.html?building=${b.id}">Request Leasing Details</a><a class="button button-secondary" href="contact.html?building=${b.id}&amp;request=tour">Request a Tour</a></div></div></div>${interiorGallery(b, es)}`;
 }
 function contact(es) {
     const c = site.contact;
