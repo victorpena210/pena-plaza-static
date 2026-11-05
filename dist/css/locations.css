@@ -32,6 +32,12 @@ figure { margin: 0; }
 .property-detail-grid .small-heading { font-size: 1.55rem; }
 .property-detail-grid address { font-style: normal; margin-bottom: 12px; }
 .detail-panel { padding: 28px; border: 1px solid var(--border); border-radius: 18px; background: #fff; }
+.property-space-summary { padding: 18px 0; margin-bottom: 20px; border-bottom: 1px solid var(--border); }
+.property-space-summary .eyebrow { margin-bottom: 10px; }
+.property-space-size { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; margin: 0; }
+.property-space-size strong { color: var(--forest); font-size: 1.55rem; line-height: 1.3; }
+.property-space-size span { color: var(--muted); font-size: 1rem; }
+.detail-panel .property-space-summary { padding-top: 0; margin-bottom: 28px; }
 .inventory-note { margin-top: 22px; color: var(--muted); font-size: .94rem; }
 .suite-summary { border-top: 1px solid var(--border); padding-top: 20px; margin-top: 20px; }
 .suite-summary dl div { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 8px 0; }

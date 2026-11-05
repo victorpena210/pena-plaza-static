@@ -88,7 +88,10 @@ async function build() {
     for (const file of pages) {
         const html = await readFile(file, 'utf8');
         if (/name="robots" content="noindex/.test(html)) continue;
-        entries.push(`    <url><loc>${site.url}/${path.basename(file) === 'index.html' ? '' : path.basename(file)}</loc></url>`);
+        const page = path.basename(file);
+        const lastModified = site.pageLastModified?.[page];
+        if (lastModified && !/^\d{4}-\d{2}-\d{2}$/.test(lastModified)) throw new Error(`Invalid sitemap last-modified date for ${page}.`);
+        entries.push(`    <url><loc>${site.url}/${page === 'index.html' ? '' : page}</loc>${lastModified ? `<lastmod>${lastModified}</lastmod>` : ''}</url>`);
     }
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries.join('\n')}\n</urlset>\n`;
     await writeFile(path.join(DIST, 'sitemap.xml'), sitemap);

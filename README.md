@@ -46,7 +46,7 @@ In the same file, populate `contact.phone`, `contact.email`, and, only if approv
 
 ## Add verified availability
 
-Each building has a `suites` array. It is empty because no vacancies, dimensions, rates, or occupancy dates have been supplied. Each confirmed listing can use:
+Each building has a `suites` array. It remains empty until specific vacancies, rates, and occupancy dates are confirmed. Building 2’s featured interior space is 50 ft × 20 ft (1,000 sq ft); these dimensions are stored separately in `interiorSpace` and do not describe the entire multi-suite building or imply availability. Each confirmed listing can use:
 
 ```json
 {
@@ -57,7 +57,7 @@ Each building has a `suites` array. It is empty because no vacancies, dimensions
 }
 ```
 
-Only insert approved values. When you publish suite listings, also update the introductory availability text and the English/Spanish FAQs that currently say sizes, prices, and dates are not published. This prevents outdated claims.
+Only insert approved values. When you publish suite listings, also keep the introductory availability text and the English/Spanish FAQs aligned with the published details. This prevents outdated claims.
 
 ## Images
 

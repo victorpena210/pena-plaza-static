@@ -19,22 +19,29 @@ function address(building, es) {
 function figure(building, es, eager = false) {
     return `<figure class="property-figure"><img src="${esc(building.image)}" alt="${esc(es ? `Vista ilustrativa de Peña Plaza, Edificio ${building.id.slice(-1)}` : building.imageAlt)}" width="${building.imageWidth}" height="${building.imageHeight}" loading="${eager ? 'eager' : 'lazy'}" decoding="async"><figcaption>${esc(es ? building.captionEs : building.caption)}</figcaption></figure>`;
 }
+function interiorSize(building, es) {
+    if (!building.interiorSpace) return '';
+    const { lengthFeet, widthFeet } = building.interiorSpace;
+    const area = (lengthFeet * widthFeet).toLocaleString('en-US');
+    return `<div class="property-space-summary"><p class="eyebrow">${es ? 'Espacio interior destacado' : 'Featured interior space'}</p><p class="property-space-size"><strong>${lengthFeet} ${es ? 'pies' : 'ft'} × ${widthFeet} ${es ? 'pies' : 'ft'}</strong><span>${area} ${es ? 'pies cuadrados' : 'sq ft'}</span></p></div>`;
+}
 function cards(es, availability = false, eager = false) {
     return `<div class="property-grid">${site.buildings.map(b => `<article class="property-card">
 ${figure(b, es, eager)}<div class="property-card-copy"><p class="eyebrow">${es ? 'Ubicación' : 'Location'} ${b.id.slice(-1)}</p><h2>${esc(label(b, es))}</h2>
-${address(b, es)}<p>${es ? 'Consulte disponibilidad, tamaños y precios.' : 'Contact us for current availability, suite sizes, and pricing.'}</p>
+${address(b, es)}${interiorSize(b, es)}<p>${b.interiorSpace ? (es ? 'Consulte disponibilidad, precios y fechas de ocupación.' : 'Contact us for current availability, pricing, and move-in dates.') : (es ? 'Consulte disponibilidad, tamaños y precios.' : 'Contact us for current availability, suite sizes, and pricing.')}</p>
 <div class="property-actions"><a class="button button-primary" href="${es ? 'espanol.html' : 'contact.html'}?building=${b.id}${es ? '#consulta' : ''}">${es ? 'Consultar este edificio' : `Ask About Building ${b.id.slice(-1)}`}</a>
 <a class="text-link" href="${b.id}.html"${es ? ' lang="en"' : ''}>${es ? 'Detalles (en inglés)' : 'View Building Details'} →</a></div>
 ${availability ? suites(b, es) : ''}</div></article>`).join('')}</div>`;
 }
 function suites(building, es = false) {
+    if (!building.suites.length && building.interiorSpace) return `<p class="inventory-note">${es ? 'Consulte qué locales están disponibles, sus precios y fechas de ocupación.' : 'Please inquire about current vacancies, pricing, and move-in dates.'}</p>`;
     if (!building.suites.length) return `<p class="inventory-note">${es ? 'No hay detalles de locales publicados actualmente. Consulte la disponibilidad.' : 'No suite details are currently published. Please inquire about availability.'}</p>`;
     return `<div class="suite-list">${building.suites.map(s => `<article class="suite-summary"><h3>${esc(s.name)}</h3><dl><div><dt>${es ? 'Tamaño' : 'Size'}</dt><dd>${esc(s.sizeText)}</dd></div><div><dt>${es ? 'Precio' : 'Rent'}</dt><dd>${esc(s.rentText)}</dd></div><div><dt>${es ? 'Disponibilidad' : 'Availability'}</dt><dd>${esc(s.availabilityText)}</dd></div></dl></article>`).join('')}</div>`;
 }
 function detail(id, es) {
     const b = site.buildings.find(b => b.id === id);
     if (!b) throw new Error(`Unknown building: ${id}`);
-    return `${figure(b, es, true)}<div class="property-detail-grid"><div><p class="eyebrow">${es ? 'Ubicación' : 'Location'}</p><h2>${esc(label(b, es))}</h2>${address(b, es)}<p>${es ? 'Este edificio está en una ubicación diferente a la otra propiedad de Peña Plaza.' : 'This building is at a different location from the other Peña Plaza property.'}</p></div><div class="detail-panel"><h2 class="small-heading">${es ? 'Disponibilidad y visitas' : 'Availability & tours'}</h2>${suites(b, es)}<div class="property-actions"><a class="button button-primary" href="contact.html?building=${b.id}">Request Leasing Details</a><a class="button button-secondary" href="contact.html?building=${b.id}&amp;request=tour">Request a Tour</a></div></div></div>`;
+    return `${figure(b, es, true)}<div class="property-detail-grid"><div><p class="eyebrow">${es ? 'Ubicación' : 'Location'}</p><h2>${esc(label(b, es))}</h2>${address(b, es)}<p>${es ? 'Este edificio está en una ubicación diferente a la otra propiedad de Peña Plaza.' : 'This building is at a different location from the other Peña Plaza property.'}</p></div><div class="detail-panel">${interiorSize(b, es)}<h2 class="small-heading">${es ? 'Disponibilidad y visitas' : 'Availability & tours'}</h2>${suites(b, es)}<div class="property-actions"><a class="button button-primary" href="contact.html?building=${b.id}">Request Leasing Details</a><a class="button button-secondary" href="contact.html?building=${b.id}&amp;request=tour">Request a Tour</a></div></div></div>`;
 }
 function contact(es) {
     const c = site.contact;

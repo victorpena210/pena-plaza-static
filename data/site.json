@@ -30,7 +30,18 @@
       "caption": "Enhanced photo with proposed signage and landscaping. Current conditions may differ.",
       "captionEs": "Foto editada con letrero y jardinería propuestos. Las condiciones actuales pueden variar.",
       "address": null,
-      "suites": []
+      "suites": [],
+      "interiorSpace": {
+        "lengthFeet": 50,
+        "widthFeet": 20
+      }
     }
-  ]
+  ],
+  "pageLastModified": {
+    "index.html": "2026-11-05",
+    "building-2.html": "2026-11-05",
+    "available-spaces.html": "2026-11-05",
+    "location.html": "2026-11-05",
+    "espanol.html": "2026-11-05"
+  }
 }
