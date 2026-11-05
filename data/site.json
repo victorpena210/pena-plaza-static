@@ -22,11 +22,11 @@
     },
     {
       "id": "building-2",
-      "name": "Peña Plaza · Building 2",
+      "name": "Peña Plaza",
       "image": "images/pena-plaza-building-2.webp",
       "imageWidth": 1774,
       "imageHeight": 887,
-      "imageAlt": "Enhanced image of Peña Plaza Building 2 with proposed signage and a roadside hedge",
+      "imageAlt": "Enhanced image of Peña Plaza with proposed signage and a roadside hedge",
       "caption": "Enhanced photo with proposed signage and landscaping. Current conditions may differ.",
       "captionEs": "Foto editada con letrero y jardinería propuestos. Las condiciones actuales pueden variar.",
       "address": null,
@@ -40,8 +40,8 @@
           "src": "images/pena-plaza-building-2-interior-concept-1.webp",
           "width": 1672,
           "height": 941,
-          "alt": "Long view concept rendering of Building 2 with proposed white walls, exposed silver ductwork, dark ceiling beams, and a concrete floor",
-          "altEs": "Vista longitudinal: concepto del Edificio 2 con paredes blancas, ductos expuestos, vigas oscuras y piso de concreto propuestos",
+          "alt": "Long view concept rendering of Peña Plaza with proposed white walls, exposed silver ductwork, dark ceiling beams, and a concrete floor",
+          "altEs": "Vista longitudinal: concepto de Peña Plaza con paredes blancas, ductos expuestos, vigas oscuras y piso de concreto propuestos",
           "caption": "Long view · Concept rendering — proposed finishes.",
           "captionEs": "Vista longitudinal · Imagen conceptual — acabados propuestos."
         },
@@ -49,12 +49,14 @@
           "src": "images/pena-plaza-building-2-interior-concept-2.webp",
           "width": 1672,
           "height": 941,
-          "alt": "Reverse view concept rendering of Building 2 with proposed white walls, exposed silver ductwork, dark ceiling beams, and a concrete floor",
-          "altEs": "Vista desde el otro extremo: concepto del Edificio 2 con paredes blancas, ductos expuestos, vigas oscuras y piso de concreto propuestos",
+          "alt": "Reverse view concept rendering of Peña Plaza with proposed white walls, exposed silver ductwork, dark ceiling beams, and a concrete floor",
+          "altEs": "Vista desde el otro extremo: concepto de Peña Plaza con paredes blancas, ductos expuestos, vigas oscuras y piso de concreto propuestos",
           "caption": "Reverse view · Concept rendering — proposed finishes.",
           "captionEs": "Vista desde el otro extremo · Imagen conceptual — acabados propuestos."
         }
-      ]
+      ],
+      "nameEs": "Peña Plaza",
+      "imageAltEs": "Foto editada del exterior de Peña Plaza con letrero y seto junto a la carretera propuestos"
     }
   ],
   "pageLastModified": {
@@ -62,6 +64,9 @@
     "building-2.html": "2026-11-05",
     "available-spaces.html": "2026-11-05",
     "location.html": "2026-11-05",
-    "espanol.html": "2026-11-05"
+    "espanol.html": "2026-11-05",
+    "contact.html": "2026-11-05",
+    "leasing.html": "2026-11-05",
+    "website-disclaimer.html": "2026-11-05"
   }
 }

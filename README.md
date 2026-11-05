@@ -17,7 +17,7 @@ Open `http://localhost:8080`. Preview and deploy **dist/**: the build adds prope
 
 - `index.html`: overview of both buildings
 - `location.html`: both locations (existing URL retained)
-- `building-1.html`, `building-2.html`: separate property pages
+- `building-1.html`, `building-2.html`: separate property pages. The second page is publicly titled “Get to Know Peña Plaza”; its existing URL and internal identifier are retained for link and inquiry compatibility.
 - `available-spaces.html`: inquiries and any verified suite details
 - `leasing.html`: process and practical leasing questions
 - `contact.html`: English Netlify form with building and request selections
