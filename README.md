@@ -1,6 +1,6 @@
 # Peña Plaza — two-location commercial leasing site
 
-This update distinguishes two separate buildings, uses the approved enhanced Building 2 image, and removes the previous single-address assumption. Both addresses are pending owner confirmation. The former street address and map are intentionally unpublished until their building association is confirmed.
+This site distinguishes two separate buildings and uses the approved enhanced photo for the property featured on “Get to Know Peña Plaza.” Its owner-confirmed street address is 1609 North West Gate, Mile 6 North. Its city and ZIP code, and Building 1’s address, remain unconfirmed.
 
 ## Build and preview
 
@@ -27,7 +27,7 @@ Open `http://localhost:8080`. Preview and deploy **dist/**: the build adds prope
 
 ## Add the confirmed addresses
 
-Edit **data/site.json**. Match each building to its picture before assigning an address. Replace the relevant `address: null` with a complete object using these keys:
+Edit **data/site.json**. Match each building to its picture before assigning an address. A confirmed `streetAddress` is required; add the other fields only when confirmed:
 
 ```json
 {
@@ -38,7 +38,7 @@ Edit **data/site.json**. Match each building to its picture before assigning an 
 }
 ```
 
-The uppercase values above are instructions, not publishable property information. Use the real values, then run `npm run build`. The address, directions link, and matching Place structured data will update together. Leave an address null if it is not confirmed. No map points to an assumed location.
+The uppercase values above are instructions, not publishable property information. Use the real values, then run `npm run build`. The visible address and matching Place structured data update together. Directions links appear only when all four fields are present. Leave an address null if the street address is not confirmed, and omit unconfirmed optional fields. No map points to an assumed location.
 
 ## Add leasing contact information
 

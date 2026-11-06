@@ -7,14 +7,23 @@ if (site.url !== 'https://penaplaza.com') throw new Error('Check the configured 
 if (site.buildings.length !== 2 || new Set(site.buildings.map(b => b.id)).size !== 2) throw new Error('Two distinct buildings are required.');
 for (const building of site.buildings) {
     if (!/^building-[12]$/.test(building.id)) throw new Error('Invalid building identifier.');
-    if (building.address && !['streetAddress', 'addressLocality', 'addressRegion', 'postalCode'].every(key => typeof building.address[key] === 'string' && building.address[key].trim())) throw new Error(`${building.id}: complete the address or leave it null.`);
+    if (building.address) {
+        if (typeof building.address.streetAddress !== 'string' || !building.address.streetAddress.trim()) throw new Error(`${building.id}: provide the confirmed street address or leave the address null.`);
+        for (const key of ['addressLocality', 'addressRegion', 'postalCode']) {
+            if (building.address[key] !== undefined && (typeof building.address[key] !== 'string' || !building.address[key].trim())) throw new Error(`${building.id}: omit unconfirmed ${key}.`);
+        }
+    }
 }
 const label = (building, es) => es ? (building.nameEs || `Peña Plaza · Edificio ${building.id.slice(-1)}`) : building.name;
 function address(building, es) {
     if (!building.address) return `<p class="address-status">${es ? 'Dirección pendiente de confirmación. Solicítela antes de visitar.' : 'Address pending confirmation. Request directions before visiting.'}</p>`;
     const a = building.address;
-    const full = `${a.streetAddress}, ${a.addressLocality}, ${a.addressRegion} ${a.postalCode}`;
-    return `<address>${esc(a.streetAddress)}<br>${esc(a.addressLocality)}, ${esc(a.addressRegion)} ${esc(a.postalCode)}</address><a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(full)}" target="_blank" rel="noopener noreferrer">${es ? 'Cómo llegar' : 'Get Directions'} ↗</a>`;
+    const locality = [a.addressLocality, [a.addressRegion, a.postalCode].filter(Boolean).join(' ')].filter(Boolean).join(', ');
+    const full = [a.streetAddress, locality].filter(Boolean).join(', ');
+    const directions = a.addressLocality && a.addressRegion && a.postalCode
+        ? `<a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(full)}" target="_blank" rel="noopener noreferrer">${es ? 'Cómo llegar' : 'Get Directions'} ↗</a>`
+        : '';
+    return `<address>${esc(a.streetAddress)}${locality ? `<br>${esc(locality)}` : ''}</address>${directions}`;
 }
 function figure(building, es, eager = false) {
     return `<figure class="property-figure"><img src="${esc(building.image)}" alt="${esc(es ? (building.imageAltEs || `Vista ilustrativa de Peña Plaza, Edificio ${building.id.slice(-1)}`) : building.imageAlt)}" width="${building.imageWidth}" height="${building.imageHeight}" loading="${eager ? 'eager' : 'lazy'}" decoding="async"><figcaption>${esc(es ? building.captionEs : building.caption)}</figcaption></figure>`;
